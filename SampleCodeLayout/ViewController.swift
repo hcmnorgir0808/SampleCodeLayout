@@ -30,7 +30,16 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        let view1 = UIView()
+        view1.backgroundColor = .gray
+        self.view.addSubview(view1)
+        guard let guide = view.rootSafeAreaLayoutGuide else {
+            return
+        }
+        view1.snp.makeConstraints { make in
+            make.edges.equalTo(guide).inset(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
+        }
         addSubView()
         setAutoLayout()
     }
@@ -59,3 +68,12 @@ class ViewController: UIViewController {
     }
 }
 
+extension UIView {
+    var rootSafeAreaLayoutGuide: UILayoutGuide? {
+        var rootView: UIView? = self
+        while rootView?.superview != nil {
+            rootView = rootView?.superview
+        }
+        return rootView?.safeAreaLayoutGuide
+    }
+}
