@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class ViewController: UIViewController {
 
@@ -45,13 +46,16 @@ class ViewController: UIViewController {
     }
 
     private func setLabelAutoLayout() {
-        label.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
-        label.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        label.snp.makeConstraints {
+            $0.center.equalTo(self.view)
+        }
     }
 
     private func setButtonAutoLayout() {
-        button.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 10).isActive = true
-        button.leadingAnchor.constraint(equalTo: label.leadingAnchor, constant: 100).isActive = true
+        button.snp.makeConstraints {
+            $0.top.equalTo(label.snp.bottom).offset(10)
+            $0.leading.equalTo(label).offset(10)
+        }
     }
 }
 
