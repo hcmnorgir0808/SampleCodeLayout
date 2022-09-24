@@ -1,0 +1,6 @@
+framework module Pods_SampleCodeLayout {
+  umbrella header "Pods-SampleCodeLayout-umbrella.h"
+
+  export *
+  module * { export * }
+}
